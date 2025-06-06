@@ -42,9 +42,9 @@ find_package(FMS 2022.04 REQUIRED COMPONENTS R4 R8)
 
 # Core JEDI repositories
 # ----------------------
-ecbuild_bundle( PROJECT oops  GIT "https://github.com/noaa-epic/oops.git"  BRANCH feature/Rtranspose UPDATE )
-ecbuild_bundle( PROJECT vader GIT "https://github.com/jcsda/vader.git" BRANCH develop UPDATE )
-ecbuild_bundle( PROJECT saber GIT "https://github.com/jcsda/saber.git" BRANCH develop UPDATE )
+ecbuild_bundle( PROJECT oops  GIT "https://github.com/noaa-epic/oops.git"  BRANCH 5aa58edfd9441fd23122fe8bc5f242b22ad84183 )
+ecbuild_bundle( PROJECT vader GIT "https://github.com/jcsda/vader.git" BRANCH c1f90b143e6fb4dc114fb563e362f5752f002dae )
+ecbuild_bundle( PROJECT saber GIT "https://github.com/jcsda/saber.git" BRANCH 663d481cd0b634e7aae399210a504c73f1109bbe )
 
 
 if(UFS_APP MATCHES "^(ATMAERO)$" OR UFS_APP MATCHES "^(S2S)$" OR UFS_APP MATCHES "^(NG-GODAS)$")
@@ -55,12 +55,12 @@ endif()
 ecbuild_bundle( PROJECT crtm GIT "https://github.com/JCSDA/CRTMv3.git" TAG v3.1.0-skylabv7 ) # BRANCH develop UPDATE )
 
 option(ENABLE_IODA_DATA "Obtain ioda test data from ioda-data repository (vs tarball)" ON)
-ecbuild_bundle( PROJECT ioda-data GIT "https://github.com/JCSDA-internal/ioda-data.git" BRANCH develop UPDATE )
-ecbuild_bundle( PROJECT ioda      GIT "https://github.com/jcsda/ioda.git"      BRANCH develop UPDATE )
+ecbuild_bundle( PROJECT ioda-data GIT "https://github.com/JCSDA-internal/ioda-data.git" BRANCH ebcb457290e6c9cdca5cef040564e499c66f31a1 )
+ecbuild_bundle( PROJECT ioda      GIT "https://github.com/jcsda/ioda.git"      BRANCH d256bfb0092383c08a098f0c7e025ea0d37535ea )
 
 option(ENABLE_UFO_DATA "Obtain ufo test data from ufo-data repository (vs tarball)" ON)
-ecbuild_bundle( PROJECT ufo-data GIT "https://github.com/jcsda-internal/ufo-data.git" BRANCH develop UPDATE )
-ecbuild_bundle( PROJECT ufo      GIT "https://github.com/jcsda/ufo.git"      BRANCH develop UPDATE )
+ecbuild_bundle( PROJECT ufo-data GIT "https://github.com/jcsda-internal/ufo-data.git" BRANCH da0a3f9ec45e283f4155dd237763707a51d8b3c4 )
+ecbuild_bundle( PROJECT ufo      GIT "https://github.com/jcsda/ufo.git"      BRANCH 46fc26a15dd9ee8cde6160b47b7fc51531dd56e2 )
 
 # Options for building with certain models
 # ----------------------------------------
@@ -113,7 +113,7 @@ endif()
 
 set(UFS_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ufs-weather-model)
 set(UFS_REPO https://github.com/ufs-community/ufs-weather-model)
-set(UFS_TAG "develop" )
+set(UFS_TAG "43f2c3bd50f7b22db4472a6712d94584dba03a54" )
 if(UFS_APP MATCHES "^(NG-GODAS)$")
    set(patch_command ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/patches/ng-godas.patch <SOURCE_DIR> && cd <SOURCE_DIR> && git apply ng-godas.patch)
 else()
@@ -184,8 +184,8 @@ target_link_libraries( fv3atm INTERFACE fms )
 ecbuild_bundle( PROJECT femps    GIT "https://github.com/jcsda/femps.git"    TAG 1.3.0 )
 if(UFS_APP MATCHES "^(ATMAERO)$" OR UFS_APP MATCHES "^(S2S)$" OR UFS_APP MATCHES "^(ATM)$")
   option(ENABLE_FV3_JEDI_DATA "Obtain fv3-jedi test data from fv3-jedi-data repository (vs tarball)" ON)
-  ecbuild_bundle( PROJECT fv3-jedi-data GIT "https://github.com/JCSDA-internal/fv3-jedi-data.git" BRANCH feature/public UPDATE )
-  ecbuild_bundle( PROJECT fv3-jedi GIT "https://github.com/noaa-epic/fv3-jedi.git" BRANCH feature/Rtranspose UPDATE )
+  ecbuild_bundle( PROJECT fv3-jedi-data GIT "https://github.com/JCSDA-internal/fv3-jedi-data.git" BRANCH c14b320b4ce844f0c11c608f5600b30148a50e86 )
+  ecbuild_bundle( PROJECT fv3-jedi GIT "https://github.com/noaa-epic/fv3-jedi.git" BRANCH b9f6d536788504ef0d3a5c04422b6ea6a0eb7c95 )
 elseif(UFS_APP MATCHES "^(NG-GODAS)$")
   ecbuild_bundle( PROJECT soca     GIT "https://github.com/jcsda/soca.git" BRANCH feature/ufs_dom_update UPDATE )
   add_dependencies(soca ufs-weather-model)
